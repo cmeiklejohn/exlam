@@ -48,10 +48,9 @@ defmodule Exlam.Mixfile do
   defp deps do
     [
       {:distillery, "~> 0.10"},
-      {:http_server, git: "https://github.com/jschoch/elixir_http_server", only: :test},
-      {:ex_aws, "~> 1.0.0-beta0"},
-      {:poison, "~> 2.0"},
-      {:hackney, "~> 1.6"}
+      {:http_server, git: "https://github.com/jschoch/elixir_http_server"},
+      {:ex_aws, git: "https://github.com/ex-aws/ex_aws"},
+      {:poison, "~> 2.0"}
     ]
   end
 end
