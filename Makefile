@@ -1,8 +1,5 @@
 .PHONY: deps deploy package upload
 
-deps:
-	mix deps.get
-
 deploy: package upload
 	mix exlam.deploy -cli
 
@@ -11,3 +8,6 @@ package: deps
 
 upload:
 	mix exlam.uf
+
+deps:
+	mix deps.get
