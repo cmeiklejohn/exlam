@@ -25,3 +25,5 @@ erl_crash.dump
 /deploy
 /rel
 outputfile.txt
+*.zip
+*.old
