@@ -19,7 +19,7 @@ defmodule Exlam.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :http_server]]
   end
 
   defp aliases do
