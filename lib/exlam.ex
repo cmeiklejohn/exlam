@@ -70,7 +70,7 @@ defmodule Mix.Tasks.Exlam.Uf do
   def run(args \\["-cf"]) do
     Mix.Task.run("loadpaths", []) 
     config = Mix.Tasks.Exlam.Package.makeConfig
-    Utils.qcmd "aws lambda update-function-code  --function-name #{config.app} --zip-file fileb://./lambda_deploy.zip --publish"
+    Utils.qcmd "aws lambda update-function-code --profile exlam-deployer1 --function-name #{config.app} --zip-file fileb://./lambda_deploy.zip --publish"
   end
 end
 
