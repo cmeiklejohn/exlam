@@ -9,7 +9,7 @@
   "http_server": {:git, "https://github.com/jschoch/elixir_http_server", "6c679ffc7314e3b3e2812c0e3d350a58841a8399", []},
   "idna": {:git, "https://github.com/benoitc/erlang-idna", "b452d8fe4c15be8146f5ca15d4f0c08720a98be4", [tag: "5.1.0"]},
   "lager": {:hex, :lager, "3.5.2", "614a8c8f67bf99b69eb264ea22121ad25511c055aaec09b086773d5108c6767f", [], [{:goldrush, "0.1.9", [hex: :goldrush, repo: "hexpm", optional: false]}], "hexpm"},
-  "lasp": {:git, "https://github.com/lasp-lang/lasp", "a0e6ad1d94d00bdf17238bbcb32f2d6bd85c2e10", []},
+  "lasp": {:git, "https://github.com/lasp-lang/lasp", "98da6d1421f31546514f3dfc4396773af736247c", [branch: :os_mon]},
   "lasp_support": {:hex, :lasp_support, "0.0.3", "c1b7e1a472037ae82c71d2d16a10b7d644a621b66ae5afe834cecf170f2e9169", [], [{:lager, "~>3.5", [hex: :lager, repo: "hexpm", optional: false]}, {:time_compat, "~>0.0.1", [hex: :time_compat, repo: "hexpm", optional: false]}], "hexpm"},
   "metrics": {:git, "https://github.com/benoitc/erlang-metrics", "c6eb4dcf29f9e907539915e2ab996f40c2ec7e8e", [tag: "1.0.1"]},
   "mimerl": {:git, "https://github.com/benoitc/mimerl", "678aba028a690da6822c87410d475841c048b6bf", [tag: "1.0.2"]},
