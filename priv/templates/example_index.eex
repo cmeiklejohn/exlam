@@ -13,8 +13,8 @@ var logfile = "/var/task/burn/dumblog.log"
 var outlogfile = null;
 var errlogfile = null;
 if(fs.existsSync(logfile)){
-  outlogfile = fs.openSync("/var/task/burn/dumblog.log","a");
-  errlogfile = fs.openSync("/var/task/burn/dumblog.log","a");
+  outlogfile = fs.openSync(logfile, "a");
+  errlogfile = fs.openSync(logfile, "a");
 }
 var homeHash = {};
 
