@@ -122,8 +122,8 @@ defmodule Mix.Tasks.Exlam.Package do
     
     #  install is "slicer", invoke and init is random user
     # homes and var need to be writable, need to thin down var
-    File.write!("./deploy/burn/dumblog.log","")
-    File.chmod!("./deploy/burn/dumblog.log",0o777)
+    File.write!("/tmp/dumblog.log","")
+    File.chmod!("/tmp/dumblog.log",0o777)
     File.chmod!("./deploy/homes",0o777) 
     System.cmd("chmod",["-R","777","./deploy/burn/var"])
     File.rename("./lambda_deploy.zip","lambda_deploy.#{config.version}.old")

@@ -6,16 +6,41 @@ var erts_version = "<%= b.erts_version %>";
 const MAX_FAILS = 4;
 var fs = require("fs")
 var version = "<%= b.version %>";
-var exec = require('child_process').exec;
+
 var es = require('child_process').execSync;
+var exec = require('child_process').exec;
 var http = require("http");
-var logfile = "/var/task/burn/dumblog.log"
+
+console.log("Copying contents into /tmp/burn...");
+es("cp -Rpv /var/task/burn /tmp", (error, stdout, stderr) => {
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.log(`stderr: ${stderr}`);
+});
+console.log("Done.");
+
+console.log("Creating log file...");
+var logfile = "/tmp/dumblog.log"
+es("touch " + logfile, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.log(`stderr: ${stderr}`);
+});
+console.log("Done.");
+
 var outlogfile = null;
 var errlogfile = null;
 if(fs.existsSync(logfile)){
   outlogfile = fs.openSync(logfile, "a");
   errlogfile = fs.openSync(logfile, "a");
 }
+
 var homeHash = {};
 
 var child_process = require('child_process'),
@@ -25,7 +50,7 @@ var child_process = require('child_process'),
 
 function doEnv(process,home){
   if (home == undefined){
-    process.env["HOME"] = "/var/task/burn"
+    process.env["HOME"] = "/tmp/burn"
   }
   process.env["ERL_EPMD_ADDRESS"] = "127.0.0.1";
   process.env["LANG"] = "en_US.utf-8";
@@ -78,14 +103,15 @@ function hget(context){
 (function new_go_proc() {
 
   doEnv(process);
-  var epmd = child_process.spawn('/var/task/burn/erts-<%= b.erts_version %>/bin/epmd',['-daemon','-relaxed_command_check'], { detached: true, stdio: 'ignore' });
+
+  var epmd = child_process.spawn('/tmp/burn/erts-<%= b.erts_version %>/bin/epmd',['-daemon','-relaxed_command_check'], { detached: true, stdio: 'ignore' });
   epmd.unref();
   es("sleep 1");
-  go_proc = child_process.spawn('/var/task/burn/bin/'+app,['foreground'],
+  go_proc = child_process.spawn('/tmp/burn/bin/'+app,['foreground'],
     { stdio: ['ignore',outlogfile,errlogfile],
       detached: true,
       env: {
-        "HOME": "/var/task/burn",
+        "HOME": "/tmp/burn",
         "ERL_EPMD_ADDRESS": "127.0.0.1",
         "LANG": "en_US.utf-8",
         "LC_ALL": "en_US.utf-8"
@@ -145,14 +171,14 @@ function debug(){
   var result = [];
   result.push(runit('netstat -an'));
   result.push(runit('whoami'));
-  result.push(runit('ls -al /var/task/burn/bin/'));
+  result.push(runit('ls -al /tmp/burn/bin/'));
   result.push(runit('ps -elf'));
-  result.push(runit('ls -al /var/task/burn/'));
+  result.push(runit('ls -al /tmp/burn/'));
   return result.join("\n");
 };
 
 function checkHomes(username){
-  var homedir = "/var/task/homes/" + username
+  var homedir = "/tmp/homes/" + username
   if (!homeHash.hasOwnProperty(homedir)){
     if (!fs.existsSync(homedir)){
       console.log("adding directory for this user: "+username);
