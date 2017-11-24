@@ -115,7 +115,7 @@ defmodule Mix.Tasks.Exlam.Package do
     {out,code} = System.cmd("/bin/sh",["-c", "./#{@deploy_stage_dir}/burn/bin/#{config.app} start"])
     :timer.sleep(1000)
     {out2,code2} = System.cmd("/bin/sh",["-c", "./#{@deploy_stage_dir}/burn/bin/#{config.app} stop"])
-    if (code != 0 || code2 != 0) do
+    if (code != 0) do
       raise "error starting release out: #{out} out2: #{out2}"
     end
     Mix.shell.info "updating permissions"
