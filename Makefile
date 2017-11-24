@@ -1,6 +1,6 @@
 .PHONY: deps deploy package upload
 
-deploy: package upload
+deploy: delete-function package upload
 	mix exlam.deploy -cli
 
 package: deps
@@ -9,5 +9,13 @@ package: deps
 upload:
 	mix exlam.uf
 
+init:
+	mix exlam.init
+
 deps:
 	mix deps.get
+
+# TODO: Make me a mix target.
+delete-function:
+	aws lambda delete-function --function-name exlam --profile exlam-deployer1; \
+	exit 0
