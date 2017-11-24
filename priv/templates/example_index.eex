@@ -111,6 +111,10 @@ function hget(context){
     console.log("go_proc exited prematurely with code: "+code+"\n");
     if (++fails > MAX_FAILS) {
       console.log("MAX_FAILS > max, restarting container v2");
+
+      var data = fs.readFileSync(logfile);
+      console.log(data.toString());
+
       process.exit(1); // force container restart after too many fails
     }
     new_go_proc();
