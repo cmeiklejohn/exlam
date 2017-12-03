@@ -190,16 +190,5 @@ function checkHomes(username){
 }
 
 exports.handler = function(event, context) {
-
-  // always output to current context's done
-  var username = String(es( "whoami", { encoding: 'utf8', timeout: 1000 } )).trim();
-  var homedir = checkHomes(username);
-  doEnv(process,homedir);
-
-  if (event.cmd && event.cmd == "hget"){
-    return hget(context);
-  }
-  else if(event.cmd){
-    return docmd(event.cmd,context);
-  }
+  console.log(event);
 }
