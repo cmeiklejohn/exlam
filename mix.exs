@@ -19,7 +19,7 @@ defmodule Exlam.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :http_server, :lasp]]
+    [applications: [:logger, :http_server, :amqp_client, :partisan]]
   end
 
   defp aliases do
@@ -49,7 +49,10 @@ defmodule Exlam.Mixfile do
     [
       {:distillery, "~> 0.10"},
       {:http_server, git: "https://github.com/jschoch/elixir_http_server"},
-      {:lasp, git: "https://github.com/lasp-lang/lasp", branch: :os_mon},
+      {:partisan, "1.3.1"},
+      {:rabbit_common, "~> 3.7.0-rc.2"},
+      {:amqp_client, "~> 3.7.0-rc.2"},
+      {:recon, "~> 2.3"},
       {:ex_aws, git: "https://github.com/ex-aws/ex_aws"},
       {:poison, "~> 2.0"}
     ]
