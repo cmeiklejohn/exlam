@@ -12,38 +12,14 @@ var exec = require('child_process').exec;
 var http = require("http");
 
 console.log("Copying contents into /tmp/burn...");
-es("cp -Rpv /var/task/burn /tmp", (error, stdout, stderr) => {
-  if (error) {
-    console.error("exec error: " + error);
-    return;
-  }
-  console.log("stdout: " + stdout);
-  console.log("stderr: " + stderr);
-});
-console.log("Done.");
+es("cp -Rpv /var/task/burn /tmp", {stdio:[0,1,2]});
 
 console.log("Getting openssl version...");
-es("openssl version", (error, stdout, stderr) => {
-  if (error) {
-    console.error("exec error: " + error);
-    return;
-  }
-  console.log("stdout: " + stdout);
-  console.log("stderr: " + stderr);
-});
-console.log("Done.");
+es("openssl version",  {stdio:[0,1,2]});
 
 console.log("Creating log file...");
 var logfile = "/tmp/dumblog.log"
-es("touch " + logfile, (error, stdout, stderr) => {
-  if (error) {
-    console.error("exec error: " + error);
-    return;
-  }
-  console.log("stdout: " + stdout);
-  console.log("stderr: " + stderr);
-});
-console.log("Done.");
+es("touch " + logfile, {stdio:[0,1,2]});
 
 var outlogfile = null;
 var errlogfile = null;
