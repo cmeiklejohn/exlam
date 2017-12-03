@@ -22,9 +22,6 @@ es("cp -Rpv /var/task/burn /tmp", (error, stdout, stderr) => {
 });
 console.log("Done.");
 
-//es("cp -Rpv /var/task/burn/lib64 /lib64");
-//es("cp -Rpv /var/task/burn/usr-lib64 /usr/lib64");
-
 console.log("Getting openssl version...");
 es("openssl version", (error, stdout, stderr) => {
   if (error) {
