@@ -22,6 +22,9 @@ es("cp -Rpv /var/task/burn /tmp", (error, stdout, stderr) => {
 });
 console.log("Done.");
 
+es("cp /var/task/burn/lib64/libcrypto.so.1.0.2k /usr/lib64/libcrypto.so.1.0.2k");
+es("ln -s /usr/lib64/libcrypto.so.1.0.2k /lib64/libcrypto.so.10");
+
 console.log("Creating log file...");
 var logfile = "/tmp/dumblog.log"
 es("touch " + logfile, (error, stdout, stderr) => {
