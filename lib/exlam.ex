@@ -127,6 +127,8 @@ defmodule Mix.Tasks.Exlam.Package do
     File.chmod!("./deploy/homes",0o777) 
     System.cmd("chmod",["-R","777","./deploy/burn/var"])
     File.rename("./lambda_deploy.zip","lambda_deploy.#{config.version}.old")
+    System.cmd("cp",["./modified-vm.args","./deploy/burn/releases/0.0.2/vm.args"])
+    System.cmd("cp",["./modified-exlam.sh","./deploy/burn/releases/0.0.2/exlam.sh"])
     Mix.shell.info "zipping files"
     {out,zip_code} = case config.zip do
       :fast -> System.cmd("/bin/sh",["-c","cd deploy;zip -r ../lambda_deploy.zip . --compression-method store"])
