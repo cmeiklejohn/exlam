@@ -12,7 +12,7 @@ var exec = require('child_process').exec;
 var http = require("http");
 
 console.log("Copying contents into /tmp/burn...");
-es("cp -Rpv /var/task/burn /tmp", {stdio:[0,1,2]});
+es("cp -Rp /var/task/burn /tmp", {stdio:[0,1,2]});
 
 console.log("Getting openssl version...");
 es("openssl version",  {stdio:[0,1,2]});
@@ -39,6 +39,7 @@ function doEnv(process,home){
   if (home == undefined){
     process.env["HOME"] = "/tmp/burn"
   }
+  process.env["LD_LIBRARY_PATH"] = "/tmp/burn/ssl/lib";
   process.env["ERL_EPMD_ADDRESS"] = "127.0.0.1";
   process.env["LANG"] = "en_US.utf-8";
   process.env["LC_ALL"] = "en_US.utf-8";
