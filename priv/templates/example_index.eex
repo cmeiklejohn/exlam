@@ -14,22 +14,22 @@ var http = require("http");
 console.log("Copying contents into /tmp/burn...");
 es("cp -Rpv /var/task/burn /tmp", (error, stdout, stderr) => {
   if (error) {
-    console.error(`exec error: ${error}`);
+    console.error("exec error: " + error);
     return;
   }
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
+  console.log("stdout: " + stdout);
+  console.log("stderr: " + stderr);
 });
 console.log("Done.");
 
 console.log("Getting openssl version...");
 es("openssl version", (error, stdout, stderr) => {
   if (error) {
-    console.error(`exec error: ${error}`);
+    console.error("exec error: " + error);
     return;
   }
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
+  console.log("stdout: " + stdout);
+  console.log("stderr: " + stderr);
 });
 console.log("Done.");
 
@@ -37,11 +37,11 @@ console.log("Creating log file...");
 var logfile = "/tmp/dumblog.log"
 es("touch " + logfile, (error, stdout, stderr) => {
   if (error) {
-    console.error(`exec error: ${error}`);
+    console.error("exec error: " + error);
     return;
   }
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
+  console.log("stdout: " + stdout);
+  console.log("stderr: " + stderr);
 });
 console.log("Done.");
 
