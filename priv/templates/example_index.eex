@@ -14,6 +14,12 @@ var http = require("http");
 console.log("Copying contents into /tmp/burn...");
 es("cp -Rp /var/task/burn /tmp", {stdio:[0,1,2]});
 
+console.log("ldd crypto");
+es("find /tmp -name crypto.so | tail -1 | xargs ldd", {stdio:[0,1,2]});
+
+console.log("ldd crypto");
+es("find /tmp -name crypto.so | tail -1 | LD_LIBRARY_PATH=/tmp/burn/ssl/lib xargs ldd", {stdio:[0,1,2]});
+
 console.log("Getting openssl version...");
 es("openssl version",  {stdio:[0,1,2]});
 
