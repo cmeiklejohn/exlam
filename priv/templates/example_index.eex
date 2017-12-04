@@ -88,6 +88,8 @@ function hget(context){
     });
   }).on('error', (e) => {
     console.log(`Got error: ${e.message}`);
+    var data = fs.readFileSync(logfile);
+    console.log(data.toString());
   });
 }
 
