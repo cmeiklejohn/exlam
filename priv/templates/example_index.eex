@@ -90,6 +90,8 @@ function hget(context){
     console.log(`Got error: ${e.message}`);
     var data = fs.readFileSync(logfile);
     console.log(data.toString());
+    // race to startup container
+    return context.done();
   });
 }
 
