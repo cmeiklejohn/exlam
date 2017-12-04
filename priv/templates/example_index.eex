@@ -176,5 +176,5 @@ function checkHomes(username){
 
 exports.handler = function(event, context, callback) {
   console.log(event);
-  callback(null, {processed: true});
+  context.done();
 }
