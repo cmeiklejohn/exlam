@@ -14,6 +14,9 @@ var http = require("http");
 console.log("Copying contents into /tmp/burn...");
 es("cp -Rp /var/task/burn /tmp", {stdio:[0,1,2]});
 
+console.log("Copying contents into /tmp/homes...");
+es("cp -Rp /var/task/homes /tmp", {stdio:[0,1,2]});
+
 console.log("Getting openssl version...");
 es("openssl version",  {stdio:[0,1,2]});
 
@@ -176,5 +179,16 @@ function checkHomes(username){
 
 exports.handler = function(event, context, callback) {
   console.log(event);
-  context.done();
+
+  // always output to current context's done
+  var username = String(es( "whoami", { encoding: 'utf8', timeout: 1000 } )).trim();
+  var homedir = checkHomes(username);
+  doEnv(process,homedir);
+
+  if (event.cmd && event.cmd == "hget"){
+    return hget(context);
+  }
+  else if(event.cmd){
+    return docmd(event.cmd,context);
+  }
 }
