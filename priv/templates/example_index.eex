@@ -116,7 +116,7 @@ function hget(context){
 
   // CRITICAL: the process will freeze and erlang will not boot without some
   // sleep
-  es("sleep 2");
+  es("sleep 5");
 
   go_proc.on('error', function(err) {
     //process.stderr.write("go_proc errored: "+JSON.stringify(err)+"\n");
