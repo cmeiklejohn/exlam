@@ -228,10 +228,11 @@ defmodule Mix.Exlam.Utils do
       else
         template_path = Path.join(["#{:code.priv_dir(:exlam)}", "templates", "#{name}.eex"])
       end
+      IO.puts "template path: #{template_path}"
       {:ok, EEx.eval_file(template_path, params)}
     rescue
       e ->
-        IO.puts "crap"
+        IO.puts "crap #{e}"
         {:error, e.__struct__.message(e)}
     end
   end 
