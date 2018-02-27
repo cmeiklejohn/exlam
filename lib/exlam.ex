@@ -221,6 +221,7 @@ defmodule Mix.Exlam.Utils do
   def template(name, params \\ []) do
     IO.puts "params: \n\t" <> inspect params
     config = Mix.Project.config
+    IO.puts "app: #{config[:app]}"
     try do
       template_path = ""
       if (config[:app] == :exlam) do
