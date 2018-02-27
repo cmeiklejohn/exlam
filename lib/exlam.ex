@@ -224,12 +224,14 @@ defmodule Mix.Exlam.Utils do
     IO.puts "app: #{config[:app]}"
     try do
       template_path = ""
-      if (config[:app] == :exlam) do
+      template_path = if (config[:app] == :exlam) do
         template_path = Path.join(["./priv", "templates", "#{name}.eex"])
         IO.puts "path is exlam #{template_path}"
+        template_path
       else
         template_path = Path.join(["#{:code.priv_dir(:exlam)}", "templates", "#{name}.eex"])
         IO.puts "path is not exlam #{template_path}"
+        template_path
       end
       IO.puts "template path: #{template_path}"
       {:ok, EEx.eval_file(template_path, params)}
