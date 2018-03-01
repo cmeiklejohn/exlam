@@ -118,6 +118,9 @@ function hget(context){
   // sleep
   es("sleep 5");
 
+  // Store the start date.
+  es("echo `date` >> /tmp/date");
+
   go_proc.on('error', function(err) {
     //process.stderr.write("go_proc errored: "+JSON.stringify(err)+"\n");
     if (++fails > MAX_FAILS) {
@@ -175,6 +178,7 @@ function checkHomes(username){
   var homedir = "/tmp/homes/" + username
   if (!homeHash.hasOwnProperty(homedir)){
     if (!fs.existsSync(homedir)){
+      console.log("start time: "+es("cat /tmp/date"));
       console.log("adding directory for this user: "+username);
       fs.mkdirSync(homedir,'0777');
       homeHash[homedir] = true;
