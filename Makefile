@@ -15,7 +15,14 @@ init:
 deps:
 	mix deps.get
 
+clean: 
+	rm -rf deps
+
 # TODO: Make me a mix target.
 delete-function:
 	aws lambda delete-function --function-name exlam --profile exlam-deployer1; \
+	exit 0
+
+invoke:
+	aws lambda invoke --invocation-type RequestResponse --function-name exlam --region us-west-2 --log-type=Tail --payload '{ "cmd": "hget" }' --profile=exlam-deployer1 outputfile.txt
 	exit 0
