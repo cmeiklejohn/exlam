@@ -27,3 +27,5 @@ erl_crash.dump
 outputfile.txt
 *.zip
 *.old
+
+.aws/
