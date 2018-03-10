@@ -10,7 +10,7 @@
   "lager": {:hex, :lager, "3.5.1", "63897a61af646c59bb928fee9756ce8bdd02d5a1a2f3551d4a5e38386c2cc071", [:rebar3], [{:goldrush, "0.1.9", [hex: :goldrush, repo: "hexpm", optional: false]}], "hexpm"},
   "lasp": {:git, "https://github.com/lasp-lang/lasp", "ed26ddbb517a4e5a56daa405b2ff6a77ce78e168", []},
   "lasp_support": {:hex, :lasp_support, "0.0.3", "c1b7e1a472037ae82c71d2d16a10b7d644a621b66ae5afe834cecf170f2e9169", [:rebar3], [{:lager, "~>3.5", [hex: :lager, repo: "hexpm", optional: false]}, {:time_compat, "~>0.0.1", [hex: :time_compat, repo: "hexpm", optional: false]}], "hexpm"},
-  "partisan": {:git, "https://github.com/lasp-lang/partisan", "2f82a9b814efdc39c04b8fd000087065574a2c9b", []},
+  "partisan": {:git, "https://github.com/lasp-lang/partisan", "d71ad2dec30f39f56a64860d2971a59c2afa8555", []},
   "partisan_amqp_peer_service_manager": {:git, "https://github.com/lasp-lang/partisan_amqp_peer_service_manager", "68a809f8a46a975fd279ec4793a134c56392ad17", []},
   "plumtree": {:hex, :plumtree, "0.5.0", "f3521ce631ad22ac00635e79c7f046a163bd1135889cdc1d0b18ab577f76ec70", [:rebar3], [{:lager, "~>3.5", [hex: :lager, repo: "hexpm", optional: false]}, {:lasp_support, "~>0.0", [hex: :lasp_support, repo: "hexpm", optional: false]}, {:partisan, "~>1.2", [hex: :partisan, repo: "hexpm", optional: false]}, {:rand_compat, "~>0.0.3", [hex: :rand_compat, repo: "hexpm", optional: false]}, {:time_compat, "~>0.0.1", [hex: :time_compat, repo: "hexpm", optional: false]}], "hexpm"},
   "poison": {:hex, :poison, "2.2.0", "4763b69a8a77bd77d26f477d196428b741261a761257ff1cf92753a0d4d24a63", [:mix], [], "hexpm"},
