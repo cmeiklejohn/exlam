@@ -72,4 +72,12 @@ RUN export PATH=~/.local/bin:$PATH && \
     mix exlam.package && \
     mix exlam.deploy -cli
 
-CMD bash
+CMD export PATH=~/.local/bin:$PATH && \
+    cd /tmp/exlam && \
+    git pull && \
+    make clean && \
+    make && \
+    make delete-function && \
+    mix exlam.package && \
+    mix exlam.deploy -cli && \
+    /bin/bash
