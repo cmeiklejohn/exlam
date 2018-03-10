@@ -52,6 +52,7 @@ defmodule HttpServer.Worker do
       #{ :ok, data, type } -> generate_response data, type
       #e -> generate_error e
     #end
+    :timer.sleep(20000)
     data = "<html><body>Hello World</html></body>"
     response = """
           HTTP/1.1 200 OK
