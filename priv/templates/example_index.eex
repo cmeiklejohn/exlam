@@ -14,6 +14,9 @@ var http = require("http");
 console.log("Copying contents into /tmp/burn...");
 es("cp -Rp /var/task/burn /tmp", {stdio:[0,1,2]});
 
+console.log("Making directory /tmp/homes...");
+es("mkdir -p /tmp/homes", {stdio:[0,1,2]});
+
 console.log("Getting openssl version...");
 es("openssl version",  {stdio:[0,1,2]});
 
