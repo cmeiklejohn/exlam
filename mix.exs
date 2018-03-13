@@ -19,7 +19,8 @@ defmodule Exlam.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :amqp_client, :partisan, :partisan_amqp_peer_service_manager, :lasp]]
+    [applications: [:logger, :amqp_client, :partisan, :partisan_amqp_peer_service_manager, :lasp],
+     mod: {Exlam,[node]}]
   end
 
   defp aliases do
