@@ -43,7 +43,13 @@ RUN export PATH=~/.local/bin:$PATH && \
 
 RUN cd /tmp && \
     curl --silent --location https://rpm.nodesource.com/setup_4.x | bash - && \
-    yum -y install nodejs zip vim
+    yum -y install zip vim
+
+RUN cd /tmp && \
+    wget https://nodejs.org/download/release/v6.10.0/node-v6.10.0-linux-x64.tar.gz && \
+    tar -zxvf node-v6.10.0-linux-x64.tar.gz && \
+    mv node-v6.10.0-linux-x64 /opt/node && \
+    ln -s /opt/node/bin/node /usr/bin/node
 
 RUN export PATH=~/.local/bin:$PATH && \
     cd /tmp && \
