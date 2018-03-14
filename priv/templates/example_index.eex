@@ -235,6 +235,7 @@ exports.handler = function(event, context, callback) {
         body: defaultContent,
       };
       callback(null, response);
+  }
   else if (event.cmd && event.cmd == "hget"){
     return hget(context);
   }
