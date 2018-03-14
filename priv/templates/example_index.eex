@@ -105,7 +105,7 @@ function hget(context){
   epmd.unref();
   es("sleep 1");
   go_proc = child_process.spawn('/tmp/burn/bin/'+app,['foreground'],
-    { stdio: ['ignore',outlogfile,errlogfile],
+    { stdio: ['ignore',1,2],
       detached: true,
       env: {
         "HOME": "/tmp/burn",
