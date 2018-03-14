@@ -191,6 +191,19 @@ function checkHomes(username){
   return homedir
 }
 
+let defaultContent = `
+<\!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Lambda@Edge Static Content Response</title>
+  </head>
+  <body>
+    <p>Hello from Lambda@Edge!</p>
+  </body>
+</html>
+`;
+
 exports.handler = function(event, context, callback) {
   console.log(event);
 
@@ -201,7 +214,28 @@ exports.handler = function(event, context, callback) {
 
   console.log("start time: "+es("cat /tmp/date"));
 
-  if (event.cmd && event.cmd == "hget"){
+  if (event.cmd && event.cmd == "edge"){
+      const response = {
+        status: '200',
+        statusDescription: 'OK',
+        headers: {
+            'cache-control': [{
+                key: 'Cache-Control',
+                value: 'max-age=100'
+            }],
+            'content-type': [{
+                key: 'Content-Type',
+                value: 'text/html'
+            }],
+            'content-encoding': [{
+                key: 'Content-Encoding',
+                value: 'UTF-8'
+            }],
+        },
+        body: defaultContent,
+      };
+      callback(null, response);
+  else if (event.cmd && event.cmd == "hget"){
     return hget(context);
   }
   else if(event.cmd){
