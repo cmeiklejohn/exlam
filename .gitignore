@@ -29,3 +29,5 @@ outputfile.txt
 *.old
 
 .aws/
+log
+config/config.exs
