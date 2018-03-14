@@ -104,23 +104,24 @@ function hget(context){
   var epmd = child_process.spawn('/tmp/burn/erts-<%= b.erts_version %>/bin/epmd',['-daemon','-relaxed_command_check'], { detached: true, stdio: 'ignore' });
   epmd.unref();
   es("sleep 1");
-  go_proc = child_process.spawn('/tmp/burn/bin/'+app,['foreground'],
-    { stdio: ['ignore',outlogfile,errlogfile],
-      detached: true,
-      env: {
-        "HOME": "/tmp/burn",
-        "ERL_EPMD_ADDRESS": "127.0.0.1",
-        "LANG": "en_US.utf-8",
-        "LC_ALL": "en_US.utf-8"
-      }
-    });
+//  go_proc = child_process.spawn('/tmp/burn/bin/'+app,['foreground'],
+//    { stdio: ['ignore',outlogfile,errlogfile],
+//      detached: true,
+//      env: {
+//        "HOME": "/tmp/burn",
+//        "ERL_EPMD_ADDRESS": "127.0.0.1",
+//        "LANG": "en_US.utf-8",
+//        "LC_ALL": "en_US.utf-8"
+//      }
+//    });
+  es("/tmp/burn/bin/"+app+" foreground",  {stdio:[0,1,2]});
 
   // CRITICAL: the process will freeze and erlang will not boot without some
   // sleep
   es("sleep 20");
 
   console.log("Slept for container initialization, time is now");
-  es("date");
+  es("date",  {stdio:[0,1,2]});
 
   // Store the start date.
   es("echo `date` >> /tmp/date");
