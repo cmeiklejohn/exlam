@@ -24,5 +24,5 @@ delete-function:
 	exit 0
 
 invoke:
-	aws lambda invoke --invocation-type Event --function-name exlam --region us-west-2 --log-type=Tail --payload '{ "cmd": "hget" }' --profile=exlam-deployer1 outputfile.txt
+	aws lambda invoke --invocation-type Event --function-name exlam --region us-east-1 --log-type=Tail --payload '{ "cmd": "hget" }' --profile=exlam-deployer1 outputfile.txt
 	exit 0

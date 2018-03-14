@@ -110,7 +110,7 @@ defmodule Mix.Tasks.Exlam.Deploy do
   def deploy_with_cli(args) do
     Mix.Task.run("loadpaths", [])
     config = Mix.Tasks.Exlam.Package.makeConfig
-    Utils.qcmd "aws lambda create-function --region us-west-2 --function-name #{config.app} --zip-file fileb://./lambda_deploy.zip --handler index.handler --runtime nodejs6.10 --profile exlam-deployer1 --timeout #{config.sam_timeout} --memory-size #{config.sam_mem_size} --role #{config.sam_role_arn}"
+    Utils.qcmd "aws lambda create-function --region us-east-1 --function-name #{config.app} --zip-file fileb://./lambda_deploy.zip --handler index.handler --runtime nodejs6.10 --profile exlam-deployer1 --timeout #{config.sam_timeout} --memory-size #{config.sam_mem_size} --role #{config.sam_role_arn}"
   end
 end
 
