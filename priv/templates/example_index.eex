@@ -89,7 +89,7 @@ function hget(context){
   }).on('error', (e) => {
     console.log(`Got error: ${e.message}`);
     var data = fs.readFileSync(logfile);
-    console.log("Dumping log file contents...);
+    console.log("Dumping log file contents...");
     console.log(data.toString());
     // race to startup container
     return context.done();
@@ -118,6 +118,9 @@ function hget(context){
   // CRITICAL: the process will freeze and erlang will not boot without some
   // sleep
   es("sleep 20");
+
+  console.log("Slept for container initialization, time is now");
+  es("date");
 
   // Store the start date.
   es("echo `date` >> /tmp/date");
