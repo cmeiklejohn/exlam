@@ -20,7 +20,7 @@ clean:
 
 # TODO: Make me a mix target.
 delete-function:
-	aws lambda delete-function --function-name exlam --profile exlam-deployer1; \
+	aws lambda delete-function --region us-east-1 --function-name exlam --profile exlam-deployer1; \
 	exit 0
 
 invoke:
