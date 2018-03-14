@@ -52,7 +52,13 @@ defmodule HttpServer.Worker do
       #{ :ok, data, type } -> generate_response data, type
       #e -> generate_error e
     #end
-    :timer.sleep(20000)
+    name = :partisan_config.get(:name)
+    type = :state_orset
+    id = {<<"object-id">>, type}
+    :lasp.declare(id, type)
+    :lasp.update(id, {:add, name}, name)
+    :lasp.propagate(id)
+    :timer.sleep(10000)
     data = "<html><body>Hello World</html></body>"
     response = """
           HTTP/1.1 200 OK
