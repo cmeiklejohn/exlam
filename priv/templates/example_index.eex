@@ -89,7 +89,7 @@ function hget(context){
   }).on('error', (e) => {
     console.log(`Got error: ${e.message}`);
     var data = fs.readFileSync(logfile);
-    console.log("Dumping log file contents...");
+    console.log("Dumping log file contents...);
     console.log(data.toString());
     // race to startup container
     return context.done();
@@ -105,7 +105,7 @@ function hget(context){
   epmd.unref();
   es("sleep 1");
   go_proc = child_process.spawn('/tmp/burn/bin/'+app,['foreground'],
-    { stdio: ['ignore',1,2],
+    { stdio: ['ignore',outlogfile,errlogfile],
       detached: true,
       env: {
         "HOME": "/tmp/burn",
@@ -117,7 +117,7 @@ function hget(context){
 
   // CRITICAL: the process will freeze and erlang will not boot without some
   // sleep
-  es("sleep 5");
+  es("sleep 20");
 
   // Store the start date.
   es("echo `date` >> /tmp/date");
