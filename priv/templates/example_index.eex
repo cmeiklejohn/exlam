@@ -117,7 +117,7 @@ function hget(context){
 
   // CRITICAL: the process will freeze and erlang will not boot without some
   // sleep
-  es("sleep 20");
+  es("sleep 5");
 
   console.log("Slept for container initialization, time is now");
   es("date",  {stdio:[0,1,2]});
