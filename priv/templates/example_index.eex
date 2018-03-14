@@ -89,6 +89,7 @@ function hget(context){
   }).on('error', (e) => {
     console.log(`Got error: ${e.message}`);
     var data = fs.readFileSync(logfile);
+    console.log("Dumping log file contents...");
     console.log(data.toString());
     // race to startup container
     return context.done();
@@ -123,6 +124,7 @@ function hget(context){
 
   go_proc.on('error', function(err) {
     //process.stderr.write("go_proc errored: "+JSON.stringify(err)+"\n");
+    console.log("go_proc error prematurely with err: "+err+"\n");
     if (++fails > MAX_FAILS) {
       console.log("MAX_FAILS > max, restarting container")
       process.exit(1); // force container restart after too many fails
