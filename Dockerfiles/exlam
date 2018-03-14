@@ -1,0 +1,40 @@
+FROM cmeiklejohn/exlam-base
+
+MAINTAINER Christopher S. Meiklejohn <christopher.meiklejohn@gmail.com>
+
+RUN export PATH=~/.local/bin:$PATH && \
+    cd /tmp && \
+    git clone https://github.com/cmeiklejohn/exlam.git && \ 
+    cd exlam && \
+    mix local.hex --force && \
+    mix local.rebar --force && \
+    mix deps.get && \
+    mix compile && \
+    mkdir -p /var/task && \
+    git pull && \
+    ln -s /tmp/exlam/deploy/burn/ /var/task/burn
+
+RUN export PATH=~/.local/bin:$PATH && \
+    cd /tmp/exlam && \
+    mix release.init && \
+    mix exlam.init
+
+COPY .aws /root/.aws
+COPY deploy/config.exs /tmp/exlam/deploy/config.exs
+COPY config/config.exs /tmp/exlam/config/config.exs
+
+RUN export PATH=~/.local/bin:$PATH && \
+    cd /tmp/exlam && \
+    make delete-function && \
+    mix exlam.package && \
+    mix exlam.deploy -cli
+
+CMD export PATH=~/.local/bin:$PATH && \
+    cd /tmp/exlam && \
+    git pull && \
+    make clean && \
+    make && \
+    make delete-function && \
+    mix exlam.package && \
+    mix exlam.deploy -cli && \
+    /bin/bash
