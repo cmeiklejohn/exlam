@@ -50,7 +50,7 @@ defmodule Exlam.Mixfile do
     [
       {:distillery, "~> 0.10"},
       {:lasp, git: "https://github.com/lasp-lang/lasp"},
-      {:partisan_amqp_peer_service_manager, git: "https://github.com/lasp-lang/partisan_amqp_peer_service_manager"},
+      {:partisan_amqp_peer_service_manager, git: "https://github.com/lasp-lang/partisan_amqp_peer_service_manager", branch: "timing"},
       {:partisan, git: "https://github.com/lasp-lang/partisan", override: true, branch: "uuid"},
       {:rabbit_common, "~> 3.7.0-rc.2"},
       {:amqp_client, "3.7.0-rc.2"},
