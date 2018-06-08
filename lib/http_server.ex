@@ -60,9 +60,9 @@ defmodule HttpServer.Worker do
     :lasp.update(id, {:add, name}, name)
     :lasp.propagate(id)
     :timer.sleep(20000)
-    {start_time, end_time} = :partisan_config.get(:last_received_message, {:erlang.timestamp, :erlang.timestamp})
+    {start_time, end_time, size} = :partisan_config.get(:last_received_message, {:erlang.timestamp, :erlang.timestamp})
     last_received_message = :timer.now_diff(end_time, start_time)
-    data = "<html><body>Hello World at #{time}, last received message: #{last_received_message}</html></body>"
+    data = "<html><body>Hello World at #{time}, last received message: #{last_received_message} for size #{size}</html></body>"
     response = """
           HTTP/1.1 200 OK
           Host: localhost
