@@ -120,7 +120,7 @@ function hget(context){
   es("sleep 5");
 
   console.log("Slept for container initialization, time is now");
-  es("date",  {stdio:[0,1,2]});
+  es("date --rfc-3339=ns",  {stdio:[0,1,2]});
 
   // Store the start date.
   es("echo `date --rfc-3339=ns` >> /tmp/date");
@@ -213,6 +213,7 @@ exports.handler = function(event, context, callback) {
   doEnv(process,homedir);
 
   console.log("start time: "+es("cat /tmp/date"));
+  console.log("current time: "+es("date --rfc-3339=ns"));
 
   if (event.cmd && event.cmd == "edge"){
       const response = {
