@@ -59,7 +59,7 @@ defmodule HttpServer.Worker do
     :lasp.declare(id, type)
     :lasp.update(id, {:add, name}, name)
     :lasp.propagate(id)
-    :timer.sleep(10000)
+    :timer.sleep(20000)
     data = "<html><body>Hello World at #{time}</html></body>"
     response = """
           HTTP/1.1 200 OK
