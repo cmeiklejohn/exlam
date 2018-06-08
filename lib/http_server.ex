@@ -59,7 +59,7 @@ defmodule HttpServer.Worker do
     :lasp.declare(id, type)
     :lasp.update(id, {:add, name}, name)
     :lasp.propagate(id)
-    :timer.sleep(20000)
+    :timer.sleep(10000)
     last_received_message = :partisan_config.get(:last_received_message, :undefined)
     data = "<html><body>Hello World at #{time}, last received message: #{last_received_message}</html></body>"
     response = """
