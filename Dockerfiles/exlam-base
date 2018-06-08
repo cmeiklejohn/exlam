@@ -28,7 +28,7 @@ RUN cd /tmp && \
 
 RUN cd /tmp && \
     mkdir /opt/elixir && \
-    git clone https://github.com/elixir-lang/elixir.git /opt/elixir && \
+    git clone https://github.com/elixir-lang/elixir.git -b v1.5 /opt/elixir && \
     cd /opt/elixir && \
     make && \
     ln -s /opt/elixir/bin/iex /usr/bin/iex && \
