@@ -123,7 +123,7 @@ function hget(context){
   es("date",  {stdio:[0,1,2]});
 
   // Store the start date.
-  es("echo `date` >> /tmp/date");
+  es("echo `date --rfc-3339=ns` >> /tmp/date");
 
   go_proc.on('error', function(err) {
     //process.stderr.write("go_proc errored: "+JSON.stringify(err)+"\n");
