@@ -52,6 +52,7 @@ defmodule HttpServer.Worker do
       #{ :ok, data, type } -> generate_response data, type
       #e -> generate_error e
     #end
+    time = DateTime.utc_now
     name = :partisan_config.get(:name)
     type = :state_orset
     id = {<<"object-id">>, type}
@@ -59,7 +60,7 @@ defmodule HttpServer.Worker do
     :lasp.update(id, {:add, name}, name)
     :lasp.propagate(id)
     :timer.sleep(10000)
-    data = "<html><body>Hello World</html></body>"
+    data = "<html><body>Hello World at #{time}</html></body>"
     response = """
           HTTP/1.1 200 OK
           Host: localhost
